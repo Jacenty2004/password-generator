@@ -1,4 +1,3 @@
-from distutils.log import debug
 import random
 
 print("Hello User,")
