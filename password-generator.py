@@ -1,23 +1,47 @@
+from datetime import datetime
 import random
+
+password = ""
 
 print("Hello User,")
 print("This is random passwords generator, created by Jacek Ćwik.")
 
-while True:
-    try:
-        lenght = int(input("How long password do you want? Write number of signs here: "))
-        break
-    except ValueError:
-        print("What a joke! but be serious, write again.")
+codeRepetition = True
+while codeRepetition == True:
 
-allSigns = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "q", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "Q", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+#--- Code lenght inputing ----------------------    
+    while True:
+        try:
+            lenght = int(input("How long password do you want? Write number of signs here: "))
+            break
+        except ValueError:
+            print("What a joke! but be serious, write again.")
 
-print("Info: Generator is not using the special signs.")
+    allSigns = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "q", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "Q", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-password = ""
-while lenght > 0:
-    password += random.choice(allSigns)
-    lenght -= 1
+    print("Info: Generator is not using the special signs.")
 
-print(password)
-print("Enjoy your new password.")
+#--- Strict generator --------------------------
+    while lenght > 0:
+       password += random.choice(allSigns)
+       lenght -= 1
+
+    print(password)
+    print("Enjoy your new password.")
+
+#--- Saving in file ----------------------------
+    while True: 
+        try: 
+            saveQestion = str(input("Do you need to save it? "))
+            break
+        except ValueError: 
+                print("Program didn't understand what you wrote. Try again, and remember to answer yes or no.")
+        if saveQestion == "yes" or "yeah" or "y" or "1" :
+           file = open("C:\Users\Jacen\Desktop\podstawy\python\password-generator\your passwords\passwords.txt", "w")
+           print(datetime.now(), password, file=file)
+           file.close()
+           break
+        elif saveQestion == "no" or "nach" or "n" or "0" :
+            break
+        else: 
+            print("Program didn't understand what you wrote. Try again, and remember to answer yes or no.")
