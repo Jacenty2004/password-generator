@@ -37,11 +37,26 @@ while codeRepetition == True:
         except ValueError: 
                 print("Program didn't understand what you wrote. Try again, and remember to answer yes or no.")
         if saveQestion == "yes" or "yeah" or "y" or "1" :
-           file = open("C:\Users\Jacen\Desktop\podstawy\python\password-generator\your passwords\passwords.txt", "w")
-           print(datetime.now(), password, file=file)
-           file.close()
-           break
-        elif saveQestion == "no" or "nach" or "n" or "0" :
+            textInFile = ("\n" + str(datetime.now()) + str(password))
+            savingInFile = open("passwords.txt", "a")
+            savingInFile.write(str(textInFile))
+            savingInFile.close()
+            break
+        elif saveQestion == "no" or "nah" or "n" or "0" :
             break
         else: 
             print("Program didn't understand what you wrote. Try again, and remember to answer yes or no.")
+
+#--- Exiting ---------------------------------
+    while True: 
+        try:
+            exiting = str(input("Do you need next another password? "))
+        except ValueError:
+            print("Just print yes or no.")
+        if exiting == "yes" or "y" or "yeah" or "1":
+            codeRepetition = False
+            break
+        elif exiting == "no" or "nah" or "n" or "0":
+            break
+        else:
+            print("Program didn't understand. Try again.")
